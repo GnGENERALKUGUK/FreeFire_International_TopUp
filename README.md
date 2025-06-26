@@ -300,22 +300,22 @@
             <section id="freefire-package-selection" class="section">
                 <h2>2. اختر باقة الجواهر:</h2>
                 <div class="package-row">
-                    <button class="package-btn" data-game="freefire" data-name="100+10 جوهرة" data-price="2,850 ج.س">
-                        100+10 جوهرة<br>2,850 ج.س
+                    <button class="package-btn" data-game="freefire" data-name="100+10 جوهرة" data-price="2,950 ج.س">
+                        100+10 جوهرة<br>2,950 ج.س
                     </button>
-                    <button class="package-btn" data-game="freefire" data-name="210+21 جوهرة" data-price="5,650 ج.س">
-                        210+21 جوهرة<br>5,650 ج.س
+                    <button class="package-btn" data-game="freefire" data-name="210+21 جوهرة" data-price="5,750 ج.س">
+                        210+21 جوهرة<br>5,750 ج.س
                     </button>
-                    <button class="package-btn" data-game="freefire" data-name="530+53 جوهرة" data-price="14,050 ج.س">
-                        530+53 جوهرة<br>14,050 ج.س
+                    <button class="package-btn" data-game="freefire" data-name="530+53 جوهرة" data-price="14,150 ج.س">
+                        530+53 جوهرة<br>14,150 ج.س
                     </button>
                 </div>
                 <div class="package-row">
-                    <button class="package-btn" data-game="freefire" data-name="1080+180 جوهرة" data-price="28,050 ج.س">
-                        1080+180 جوهرة<br>28,050 ج.س
+                    <button class="package-btn" data-game="freefire" data-name="1080+180 جوهرة" data-price="28,150 ج.س">
+                        1080+180 جوهرة<br>28,150 ج.س
                     </button>
-                    <button class="package-btn" data-game="freefire" data-name="2200+220 جوهرة" data-price="56,100 ج.س">
-                        2200+220 جوهرة<br>56,100 ج.س
+                    <button class="package-btn" data-game="freefire" data-name="2200+220 جوهرة" data-price="56,200 ج.س">
+                        2200+220 جوهرة<br>56,200 ج.س
                     </button>
                 </div>
             </section>
@@ -326,22 +326,22 @@
             <section id="pubg-package-selection" class="section">
                 <h2>2. اختر باقة الشدات:</h2>
                 <div class="package-row">
-                    <button class="package-btn" data-game="pubg" data-name="60 شدة" data-price="2,900 ج.س">
-                        60 شدة<br>2,900 ج.س
+                    <button class="package-btn" data-game="pubg" data-name="60 شدة" data-price="3,000 ج.س">
+                        60 شدة<br>3,000 ج.س
                     </button>
-                    <button class="package-btn" data-game="pubg" data-name="300+25 شدة" data-price="14,300 ج.س">
-                        300+25 شدة<br>14,300 ج.س
+                    <button class="package-btn" data-game="pubg" data-name="300+25 شدة" data-price="14,400 ج.س">
+                        300+25 شدة<br>14,400 ج.س
                     </button>
-                    <button class="package-btn" data-game="pubg" data-name="600+60 شدة" data-price="28,550 ج.س">
-                        600+60 شدة<br>28,550 ج.س
+                    <button class="package-btn" data-game="pubg" data-name="600+60 شدة" data-price="28,650 ج.س">
+                        600+60 شدة<br>28,650 ج.س
                     </button>
                 </div>
                 <div class="package-row">
-                    <button class="package-btn" data-game="pubg" data-name="1500+300 شدة" data-price="71,400 ج.س">
-                        1500+300 شدة<br>71,400 ج.س
+                    <button class="package-btn" data-game="pubg" data-name="1500+300 شدة" data-price="71,500 ج.س">
+                        1500+300 شدة<br>71,500 ج.س
                     </button>
-                    <button class="package-btn" data-game="pubg" data-name="3000+850 شدة" data-price="142,800 ج.س">
-                        3000+850 شدة<br>142,800 ج.س
+                    <button class="package-btn" data-game="pubg" data-name="3000+850 شدة" data-price="142,900 ج.س">
+                        3000+850 شدة<br>142,900 ج.س
                     </button>
                 </div>
             </section>
@@ -462,53 +462,70 @@
 
             // زر تأكيد الدفع
             const confirmPaymentButton = document.getElementById("confirm-payment-btn");
-            confirmPaymentButton.addEventListener("click", onUserConfirmedPayment);
+            confirmPaymentButton.addEventListener("click", function() {
+                // إخفاء قسم معلومات الدفع وإظهار قسم التحذير
+                document.getElementById("payment-info").classList.add("hidden");
+                document.getElementById("warning-section").classList.remove("hidden");
+                document.getElementById("warning-section").scrollIntoView({ behavior: "smooth" });
+            });
 
             // زر قبول التحذير
             const acceptWarningButton = document.getElementById("accept-warning-btn");
-            acceptWarningButton.addEventListener("click", onUserAcceptedWarning);
+            acceptWarningButton.addEventListener("click", function() {
+                // إخفاء قسم التحذير وإظهار قسم إدخال البيانات
+                document.getElementById("warning-section").classList.add("hidden");
+                document.getElementById("account-input").classList.remove("hidden");
+                document.getElementById("account-input").scrollIntoView({ behavior: "smooth" });
+            });
 
             // زر إرسال الطلب
             const submitOrderButton = document.getElementById("submit-order-btn");
-            submitOrderButton.addEventListener("click", onUserSubmitsOrder);
+            submitOrderButton.addEventListener("click", submitOrder);
 
-            // زر تقديم طلب جديد
+            // زر طلب جديد
             const newOrderButton = document.getElementById("new-order-btn");
-            newOrderButton.addEventListener("click", resetAppForNewOrder);
+            newOrderButton.addEventListener("click", resetForm);
 
-            // إخفاء حقل الاسم الرباعي عند التحميل الأولي
+            // إخفاء حقل الاسم الرباعي افتراضياً
             document.getElementById("full-name-input").classList.add("hidden");
         });
 
-        // اختيار اللعبة
+        // وظيفة اختيار اللعبة
         function selectGame(game, button) {
+            selectedGame = game;
+
             // إزالة التحديد من جميع أزرار اللعبة
             document.querySelectorAll(".game-btn").forEach(btn => {
                 btn.classList.remove("selected");
             });
-            // تحديد الزر المختار
+            // إضافة التحديد للزر المختار
             button.classList.add("selected");
-            selectedGame = game;
 
-            // إخفاء جميع أقسام اللعبة أولاً
+            // إخفاء جميع أقسام اللعبتين
             document.getElementById("freefire-sections").classList.add("hidden");
             document.getElementById("pubg-sections").classList.add("hidden");
-
-            // إظهار أقسام اللعبة المختارة
-            if (game === "freefire") {
-                document.getElementById("freefire-sections").classList.remove("hidden");
-                document.getElementById("freefire-package-selection").scrollIntoView({ behavior: "smooth" });
-            } else if (game === "pubg") {
-                document.getElementById("pubg-sections").classList.remove("hidden");
-                document.getElementById("pubg-package-selection").scrollIntoView({ behavior: "smooth" });
-            }
-
-            // إخفاء جميع الأقسام اللاحقة عند تغيير اللعبة
             document.getElementById("payment-method").classList.add("hidden");
             document.getElementById("payment-info").classList.add("hidden");
             document.getElementById("warning-section").classList.add("hidden");
             document.getElementById("account-input").classList.add("hidden");
             document.getElementById("confirmation").classList.add("hidden");
+
+            // إظهار القسم الخاص باللعبة المختارة
+            if (selectedGame === "freefire") {
+                document.getElementById("freefire-sections").classList.remove("hidden");
+                document.getElementById("freefire-package-selection").scrollIntoView({ behavior: "smooth" });
+            } else if (selectedGame === "pubg") {
+                document.getElementById("pubg-sections").classList.remove("hidden");
+                document.getElementById("pubg-package-selection").scrollIntoView({ behavior: "smooth" });
+            }
+
+            // مسح التحديد من الباقات وطرق الدفع عند تغيير اللعبة
+            document.querySelectorAll(".package-btn").forEach(btn => {
+                btn.classList.remove("selected");
+            });
+            document.querySelectorAll(".payment-btn").forEach(btn => {
+                btn.classList.remove("selected");
+            });
 
             // إعادة تعيين المتغيرات المتعلقة بالباقة والدفع
             selectedPackageName = "";
@@ -518,188 +535,171 @@
             playerName = "";
             fullName = "";
 
-            // إزالة التحديد من أزرار الباقة وطرق الدفع
-            document.querySelectorAll(".package-btn").forEach(btn => {
-                btn.classList.remove("selected");
-            });
-            document.querySelectorAll(".payment-btn").forEach(btn => {
-                btn.classList.remove("selected");
-            });
-
-            // مسح حقول الإدخال
-            document.getElementById("player-id").value = "";
-            document.getElementById("player-name").value = "";
-            document.getElementById("full-name").value = "";
+            // إخفاء حقل الاسم الرباعي
+            document.getElementById("full-name-input").classList.add("hidden");
         }
 
-        // اختيار الباقة
-        function onPackageSelected() {
+        // وظيفة عند اختيار الباقة
+        function onPackageSelected(event) {
+            const button = event.currentTarget;
+            selectedPackageName = button.dataset.name;
+            selectedPackagePrice = button.dataset.price;
+
             // إزالة التحديد من جميع أزرار الباقة لنفس اللعبة
             document.querySelectorAll(`#${selectedGame}-sections .package-btn`).forEach(btn => {
                 btn.classList.remove("selected");
             });
-            
-            // تحديد الزر المختار
-            this.classList.add("selected");
-            
-            // تخزين بيانات الباقة المختارة
-            selectedPackageName = this.getAttribute("data-name");
-            selectedPackagePrice = this.getAttribute("data-price");
-            
-            // إظهار قسم اختيار طريقة الدفع
+            // إضافة التحديد للزر المختار
+            button.classList.add("selected");
+
+            // إظهار قسم طريقة الدفع
             document.getElementById("payment-method").classList.remove("hidden");
-            
-            // إخفاء الأقسام اللاحقة
+            document.getElementById("payment-method").scrollIntoView({ behavior: "smooth" });
+
+            // مسح التحديد من طرق الدفع عند تغيير الباقة
+            document.querySelectorAll(".payment-btn").forEach(btn => {
+                btn.classList.remove("selected");
+            });
+            selectedPaymentMethod = "";
+
+            // إخفاء الأقسام التالية
             document.getElementById("payment-info").classList.add("hidden");
             document.getElementById("warning-section").classList.add("hidden");
             document.getElementById("account-input").classList.add("hidden");
             document.getElementById("confirmation").classList.add("hidden");
-            
-            // التمرير إلى قسم اختيار طريقة الدفع
-            document.getElementById("payment-method").scrollIntoView({ behavior: "smooth" });
+
+            // إخفاء حقل الاسم الرباعي
+            document.getElementById("full-name-input").classList.add("hidden");
         }
 
-        // اختيار طريقة الدفع
+        // وظيفة اختيار طريقة الدفع
         function selectPaymentMethod(method, button) {
-            // إزالة التحديد من جميع الأزرار
+            selectedPaymentMethod = method;
+
+            // إزالة التحديد من جميع أزرار الدفع
             document.querySelectorAll(".payment-btn").forEach(btn => {
                 btn.classList.remove("selected");
             });
-            
-            // تحديد الزر المختار
+            // إضافة التحديد للزر المختار
             button.classList.add("selected");
-            
-            // تخزين طريقة الدفع المختارة
-            selectedPaymentMethod = method;
-            
-            // تحديث معلومات الدفع
+
+            // تحديث وعرض معلومات الدفع
             updatePaymentInfo();
-            
+
             // إظهار قسم معلومات الدفع
             document.getElementById("payment-info").classList.remove("hidden");
-            
-            // إخفاء الأقسام اللاحقة
+            document.getElementById("payment-info").scrollIntoView({ behavior: "smooth" });
+
+            // إخفاء الأقسام التالية
             document.getElementById("warning-section").classList.add("hidden");
             document.getElementById("account-input").classList.add("hidden");
             document.getElementById("confirmation").classList.add("hidden");
-            
-            // التمرير إلى قسم معلومات الدفع
-            document.getElementById("payment-info").scrollIntoView({ behavior: "smooth" });
+
+            // إخفاء حقل الاسم الرباعي
+            document.getElementById("full-name-input").classList.add("hidden");
         }
 
-        // تحديث معلومات الدفع
+        // وظيفة تحديث معلومات الدفع
         function updatePaymentInfo() {
             const selectedPackageDiv = document.getElementById("selected-package");
             const paymentDetailsDiv = document.getElementById("payment-details");
-            
-            selectedPackageDiv.textContent = `الباقة المختارة: ${selectedPackageName} - ${selectedPackagePrice}`;
-            
+
+            selectedPackageDiv.innerHTML = `لقد اخترت: <span style="color: #AED581;">${selectedPackageName}</span> بسعر: <span style="color: #AED581;">${selectedPackagePrice}</span>`;
+
             let details = "";
             if (selectedPaymentMethod === "Bankak") {
                 details = `
                     <p>يرجى تحويل المبلغ إلى حساب بنكك التالي:</p>
-                    <p><strong>رقم الحساب: ${bankakAccountNumber}</strong></p>
-                    <p style="color: #FFEB3B; font-weight: bold;">عند إدخال الرقم في تطبيق بنكك، سيظهر اسم المستلم: سمير عبد المنعم سعيد خيري.</p>
-                    <p>سيتم شحن حسابك فور تأكدنا من وصول النقود.</p>
+                    <p style="font-weight: bold;">رقم الحساب: ${bankakAccountNumber}</p>
+                    <p>اسم المستفيد: [اسم المستفيد بنكك]</p>
+                    <p style="color: #FFEB3B;">ملاحظة: بعد التحويل، اضغط على زر "لقد قمت بالدفع، متابعة" أدناه.</p>
                 `;
                 document.getElementById("full-name-input").classList.remove("hidden");
             } else if (selectedPaymentMethod === "MyKashy") {
                 details = `
                     <p>يرجى تحويل المبلغ إلى حساب ماي كاشي التالي:</p>
-                    <p><strong>رقم الحساب: ${myKashyAccountNumber}</strong></p>
-                    <p>سيتم شحن حسابك فور تأكدنا من وصول النقود.</p>
+                    <p style="font-weight: bold;">رقم الحساب: ${myKashyAccountNumber}</p>
+                    <p>اسم المستفيد: [اسم المستفيد ماي كاشي]</p>
+                    <p style="color: #FFEB3B;">ملاحظة: بعد التحويل، اضغط على زر "لقد قمت بالدفع، متابعة" أدناه.</p>
                 `;
                 document.getElementById("full-name-input").classList.remove("hidden");
             }
             paymentDetailsDiv.innerHTML = details;
         }
 
-        // تأكيد الدفع من قبل المستخدم
-        function onUserConfirmedPayment() {
-            // إظهار قسم التحذير
-            document.getElementById("warning-section").classList.remove("hidden");
-            
-            // إخفاء الأقسام اللاحقة
-            document.getElementById("account-input").classList.add("hidden");
-            document.getElementById("confirmation").classList.add("hidden");
-            
-            // التمرير إلى قسم التحذير
-            document.getElementById("warning-section").scrollIntoView({ behavior: "smooth" });
-        }
-
-        // قبول التحذير من قبل المستخدم
-        function onUserAcceptedWarning() {
-            // تحديث عنوان قسم إدخال البيانات بناءً على اللعبة المختارة
-            const accountInputTitle = document.getElementById("account-input-title");
-            if (selectedGame === "freefire") {
-                accountInputTitle.textContent = "6. أدخل بيانات حسابك في فري فاير:";
-            } else if (selectedGame === "pubg") {
-                accountInputTitle.textContent = "6. أدخل بيانات حسابك في ببجي موبايل:";
-            }
-
-            // إظهار قسم إدخال بيانات الحساب
-            document.getElementById("account-input").classList.remove("hidden");
-            
-            // إخفاء الأقسام اللاحقة
-            document.getElementById("confirmation").classList.add("hidden");
-            
-            // التمرير إلى قسم إدخال بيانات الحساب
-            document.getElementById("account-input").scrollIntoView({ behavior: "smooth" });
-        }
-
-        // إرسال الطلب
-        function onUserSubmitsOrder() {
+        // وظيفة إرسال الطلب
+        async function submitOrder() {
             playerID = document.getElementById("player-id").value;
             playerName = document.getElementById("player-name").value;
             fullName = document.getElementById("full-name").value;
 
-            if (!fullName.trim()) {
-                alert("الرجاء إدخال اسمك الرباعي لمطابقة الدفع.");
+            if (!playerID || !playerName || !fullName) {
+                alert("الرجاء ملء جميع الحقول المطلوبة (معرف الحساب، اسم الحساب، الاسم الرباعي).");
                 return;
             }
 
-            if (!selectedPackageName || !selectedPaymentMethod || !playerID.trim() || !playerName.trim()) {
-                alert("الرجاء إدخال جميع البيانات المطلوبة");
-                return;
-            }
-            
-            // إعداد ملخص الطلب
-            let orderSummary = `اللعبة: ${selectedGame === "freefire" ? "فري فاير" : "ببجي موبايل"}\nالباقة: ${selectedPackageName}\nالسعر: ${selectedPackagePrice}\nID الحساب: ${playerID}\nاسم الحساب: ${playerName}\nطريقة الدفع: ${selectedPaymentMethod === "Bankak" ? "بنكك" : "ماي كاشي"}\nالاسم الرباعي: ${fullName}`;
-            
-            // إرسال الطلب إلى تليجرام
-            sendOrderToTelegram(orderSummary + `\nوقت الطلب: ${new Date().toLocaleString()}`);
-            
-            // عرض ملخص الطلب
-            document.getElementById("order-summary").textContent = orderSummary;
-            
-            // إظهار قسم التأكيد
+            // إخفاء جميع الأقسام
+            document.getElementById("game-selection").classList.add("hidden");
+            document.getElementById("freefire-sections").classList.add("hidden");
+            document.getElementById("pubg-sections").classList.add("hidden");
+            document.getElementById("payment-method").classList.add("hidden");
+            document.getElementById("payment-info").classList.add("hidden");
+            document.getElementById("warning-section").classList.add("hidden");
+            document.getElementById("account-input").classList.add("hidden");
+
+            // إظهار قسم التأكيد فقط
             document.getElementById("confirmation").classList.remove("hidden");
             document.getElementById("confirmation").scrollIntoView({ behavior: "smooth" });
-        }
 
-        // دالة لإرسال البيانات إلى تليجرام
-        function sendOrderToTelegram(orderDetails) {
-            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-            const params = new URLSearchParams({
-                chat_id: TELEGRAM_CHAT_ID,
-                text: orderDetails
-            });
+            // تحديث ملخص الطلب
+            const orderSummaryDiv = document.getElementById("order-summary");
+            orderSummaryDiv.innerHTML = `
+                <p>ملخص الطلب:</p>
+                <p>اللعبة: <span style="color: #AED581;">${selectedGame === "freefire" ? "فري فاير" : "ببجي موبايل"}</span></p>
+                <p>الباقة: <span style="color: #AED581;">${selectedPackageName}</span></p>
+                <p>السعر: <span style="color: #AED581;">${selectedPackagePrice}</span></p>
+                <p>طريقة الدفع: <span style="color: #AED581;">${selectedPaymentMethod}</span></p>
+                <p>معرف الحساب: <span style="color: #AED581;">${playerID}</span></p>
+                <p>اسم الحساب: <span style="color: #AED581;">${playerName}</span></p>
+                <p>الاسم الرباعي: <span style="color: #AED581;">${fullName}</span></p>
+            `;
 
-            fetch(url + "?" + params.toString(), {
-                method: "GET",
-            })
-            .then(response => {
-                if (!response.ok) {
-                    console.error("حدث خطأ في إرسال الطلب إلى تليجرام");
+            // إرسال البيانات إلى تليجرام
+            const message = `
+                طلب شحن جديد:
+                اللعبة: ${selectedGame === "freefire" ? "فري فاير" : "ببجي موبايل"}
+                الباقة: ${selectedPackageName}
+                السعر: ${selectedPackagePrice}
+                طريقة الدفع: ${selectedPaymentMethod}
+                معرف الحساب: ${playerID}
+                اسم الحساب: ${playerName}
+                الاسم الرباعي: ${fullName}
+            `;
+
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message
+                    })
+                });
+                const data = await response.json();
+                if (data.ok) {
+                    console.log("Message sent to Telegram successfully!");
+                } else {
+                    console.error("Failed to send message to Telegram:", data);
                 }
-            })
-            .catch(error => {
-                console.error("حدث خطأ في الاتصال بـ Telegram API:", error);
-            });
+            } catch (error) {
+                console.error("Error sending message to Telegram:", error);
+            }
         }
 
-        // إعادة تعيين التطبيق لطلب جديد
-        function resetAppForNewOrder() {
+        // وظيفة إعادة تعيين النموذج
+        function resetForm() {
             // إخفاء جميع الأقسام ما عدا اختيار اللعبة
             document.getElementById("freefire-sections").classList.add("hidden");
             document.getElementById("pubg-sections").classList.add("hidden");
@@ -708,6 +708,9 @@
             document.getElementById("warning-section").classList.add("hidden");
             document.getElementById("account-input").classList.add("hidden");
             document.getElementById("confirmation").classList.add("hidden");
+
+            // إظهار قسم اختيار اللعبة فقط
+            document.getElementById("game-selection").classList.remove("hidden");
 
             // إزالة التحديد من أزرار اللعبة والباقة وطرق الدفع
             document.querySelectorAll(".game-btn").forEach(btn => {
